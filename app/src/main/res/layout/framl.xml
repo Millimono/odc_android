@@ -1,0 +1,35 @@
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="9">
+
+    <TextView
+        android:id="@+id/textViewContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contenu principal"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/textViewError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Une erreur est survenue"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+</FrameLayout>
+    <Button
+        android:id="@+id/idbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1" />
+</LinearLayout>

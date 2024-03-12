@@ -1,0 +1,110 @@
+<RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/im1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo3red"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INDUSTRIE"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo3red"
+            android:layout_alignParentRight="true"
+           />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ln1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edt1email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableStart="@drawable/baseline_home_24"
+            android:hint="email"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:theme="@style/EditTextStyle" />
+
+        <EditText
+            android:id="@+id/edt2passwrd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableStart="@drawable/baseline_home_24"
+            android:hint="password"
+            android:theme="@style/EditTextStyle"
+
+            />
+
+        <Button
+            android:id="@+id/btn"
+            style="@style/CustomButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="Valider"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_selector"
+            android:text="Enregistrer"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo3"
+                android:layout_gravity="center"
+                />
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+<!--        android:background="@drawable/edit_text_background"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:drawableStart="@drawable/baseline_home_24"
+            android:theme="@style/EditTextStyle"-->

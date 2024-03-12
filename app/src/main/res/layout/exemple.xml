@@ -1,0 +1,63 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hello"
+            android:textSize="50sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hello"
+            android:textSize="50sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hello"
+            android:layout_weight="9"
+            android:textSize="50sp"/>
+
+        <TextView
+            android:id="@+id/idtextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hello"
+            android:layout_weight="1"
+
+            android:textSize="50sp"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:textColor="@color/purple_200"
+            />
+        <Button
+            android:id="@+id/idbtn"
+            android:layout_weight="1"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="btn"
+            />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
