@@ -18,12 +18,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class FootballFragment extends Fragment {
 
     private TextView textView;
+    private TextView textView2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_football, container, false);
         textView = view.findViewById(R.id.textView);
+        textView2 = view.findViewById(R.id.textView2);
+
         loadCompetitions();
         return view;
     }
@@ -56,6 +59,37 @@ public class FootballFragment extends Fragment {
                 textView.setText("Échec de la connexion: " + t.getMessage());
             }
         });
+
+
+       // FootballDataService service2 = retrofit.create(FootballDataService.class);
+        service.getCLMatches().enqueue(new Callback<MatchesResponse>() {
+            @Override
+            public void onResponse(Call<MatchesResponse> call, Response<MatchesResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    MatchesResponse matchesResponse = response.body();
+                    List<Match> matches = matchesResponse.getMatches();
+                    StringBuilder matchesInfo = new StringBuilder();
+                    for (Match match : matches) {
+                        // Ici, vous pouvez ajuster les informations affichées selon vos besoins
+                        matchesInfo.append("Date: ").append(match.getDate())
+                                .append("\nHome Team: ").append(match.getHomeTeam().getName())
+                                .append("\nAway Team: ").append(match.getAwayTeam().getName())
+                                .append("\n\n");
+                    }
+                         textView2.setText(matchesInfo.toString());
+                } else {
+                    // Gérez l'erreur, par exemple un code de réponse non réussi
+                        textView2.setText("Erreur lors de la récupération des matchs: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MatchesResponse> call, Throwable t) {
+                // Gérez l'échec de la requête, par exemple une exception réseau
+               textView2.setText("Échec de la connexion: " + t.getMessage());
+            }
+        });
+
 
     }
 }
