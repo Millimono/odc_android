@@ -10,12 +10,39 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- fragment_football.xml -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMatches"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:id="@+id/matchesTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
+
+
     </ScrollView>
 
 </LinearLayout>

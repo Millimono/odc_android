@@ -10,5 +10,8 @@ public interface FootballDataService {
     @Headers("X-Auth-Token: 0d05df95aa504c3c880b1708311bc680")
     @GET("v4/competitions/")
     Call<CompetitionsResponse> getCompetitions();
+    @Headers("X-Auth-Token: 0d05df95aa504c3c880b1708311bc680")
+    @GET("v4/competitions/CL/matches")
+    Call<MatchesResponse> getCompetitionMatches();
 
 }
