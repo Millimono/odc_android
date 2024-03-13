@@ -1,13 +1,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <TextView
+    <EditText
+        android:id="@+id/nom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nom" />
+
+    <EditText
+        android:id="@+id/prenom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Prénom" />
+
+    <EditText
+        android:id="@+id/dateNaissance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date de Naissance (JJ/MM/AAAA)" />
+
+    <EditText
+        android:id="@+id/salaire"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Salaire"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Service" />
+
+    <Button
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contenu pour Fragment 2" />
-
-    <!-- Ajoutez d'autres vues ici selon vos besoins -->
-
+        android:text="Enregistrer"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>
