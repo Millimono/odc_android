@@ -7,6 +7,7 @@ public class Personne {
     private String dateNaissance;
     private double salaire;
     private String service;
+    private String imagePath;
 
     // Constructeur vide pour initialiser un nouvel objet Personne
     public Personne() {
@@ -21,6 +22,16 @@ public class Personne {
         this.salaire = salaire;
         this.service = service;
     }
+
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
 
     // Getters et setters pour chaque attribut de la classe
     public int getId() {

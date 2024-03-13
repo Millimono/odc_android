@@ -24,6 +24,7 @@ public class pageprincipale extends AppCompatActivity
         Button btn1 = findViewById(R.id.btntest);
         Button btn2 = findViewById(R.id.btntest2);
         Button btn3 = findViewById(R.id.btntest3);
+        Button btn4 = findViewById(R.id.btntest4);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +49,15 @@ public class pageprincipale extends AppCompatActivity
             public void onClick(View view) {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.contentLayout, new FootballFragment())
+                        .commit();
+            }
+        });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contentLayout, new Fragment4())
                         .commit();
             }
         });

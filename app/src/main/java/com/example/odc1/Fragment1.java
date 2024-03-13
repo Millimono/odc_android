@@ -25,7 +25,7 @@ public class Fragment1 extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         DBHelper dbHelper = new DBHelper(getContext());
-        List<Personne> personnes = dbHelper.getAllPersonnes();
+        List<Personne> personnes = dbHelper.getAllPersonness();
 
         PersonneAdapter adapter = new PersonneAdapter(personnes);
         recyclerView.setAdapter(adapter);

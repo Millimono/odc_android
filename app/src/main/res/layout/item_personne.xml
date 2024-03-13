@@ -1,18 +1,28 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="8dp">
 
+    <ImageView
+        android:id="@+id/im"
+        android:layout_width="180dp"
+        android:layout_height="180dp" />
+
     <TextView
         android:id="@+id/nomTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"/>
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_alignEnd="@+id/prenomTextView"
+        android:layout_below="@+id/prenomTextView"
+
+        android:textSize="18sp" />
+
     <TextView
         android:id="@+id/prenomTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"/>
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_toEndOf="@+id/im"
+        android:textSize="16sp" />
     <!-- Ajoutez plus de TextViews ici pour les autres attributs si nécessaire -->
-</LinearLayout>
+</RelativeLayout>

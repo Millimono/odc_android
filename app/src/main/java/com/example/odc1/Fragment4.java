@@ -7,23 +7,19 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-import androidx.fragment.app.Fragment;
-
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,73 +27,27 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Fragment2 extends Fragment {
+public class Fragment4 extends Fragment {
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_CAMERA_PERMISSION = 2;
     private String currentPhotoPath; // Chemin de la photo actuelle
-    private EditText nomEditText, prenomEditText, dateNaissanceEditText, salaireEditText, serviceEditText;
-    private Button saveButton,TakeButton;
-    ImageView im;
+
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment2, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment4, container, false);
+        Button saveButton = view.findViewById(R.id.saveButton);
 
-        nomEditText = view.findViewById(R.id.nom);
-        prenomEditText = view.findViewById(R.id.prenom);
-        dateNaissanceEditText = view.findViewById(R.id.dateNaissance);
-        salaireEditText = view.findViewById(R.id.salaire);
-        serviceEditText = view.findViewById(R.id.service);
-        saveButton = view.findViewById(R.id.saveButton);
-
-        TakeButton = view.findViewById(R.id.TakeButton);
-        im  = view.findViewById(R.id.im);
-        TakeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                requestCameraPermission();
-            }
-        });
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                saveData();
+            public void onClick(View view) {
+                requestCameraPermission();
             }
         });
 
         return view;
-    }
-
-    private void saveData() {
-        String nom = nomEditText.getText().toString();
-        String prenom = prenomEditText.getText().toString();
-        String dateNaissance = dateNaissanceEditText.getText().toString();
-       // double salaire = Double.parseDouble(salaireEditText.getText().toString());
-
-        double salaire = 0;
-        try {
-            salaire = Double.parseDouble(salaireEditText.getText().toString());
-        } catch (NumberFormatException e) {
-            Toast.makeText(getContext(), "Salaire invalide", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String service = serviceEditText.getText().toString();
-
-        DBHelper dbHelper = new DBHelper(getContext());
-        dbHelper.addPersonne(nom, prenom, dateNaissance, salaire, service,currentPhotoPath);
-
-        // Effacer les champs
-        nomEditText.setText("");
-        prenomEditText.setText("");
-        dateNaissanceEditText.setText("");
-        salaireEditText.setText("");
-        serviceEditText.setText("");
-
-        // Afficher le toast de confirmation
-        Toast.makeText(getContext(), "Données enregistrées", Toast.LENGTH_SHORT).show();
     }
 
     private void requestCameraPermission() {
@@ -155,10 +105,10 @@ public class Fragment2 extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-            Glide.with(this).load(currentPhotoPath).into(im);
+            // La photo a été prise avec succès
+            // Vous pouvez ici utiliser currentPhotoPath pour afficher ou traiter la photo
         }
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -176,6 +126,3 @@ public class Fragment2 extends Fragment {
 
 
 }
-
-
-
