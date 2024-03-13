@@ -20,7 +20,8 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchVie
     @NonNull
     @Override
     public MatchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_match, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_match, parent, false);
         return new MatchViewHolder(itemView);
     }
 

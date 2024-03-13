@@ -33,7 +33,8 @@ public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapte
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         return competitions.size();
     }
 
