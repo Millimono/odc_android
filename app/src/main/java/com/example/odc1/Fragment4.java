@@ -52,7 +52,8 @@ public class Fragment4 extends Fragment {
 
     private void requestCameraPermission() {
         // Vérifie si la permission est déjà accordée
-        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+        {
             // Demande la permission
             requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
         } else {
@@ -61,7 +62,8 @@ public class Fragment4 extends Fragment {
         }
     }
 
-    private void dispatchTakePictureIntent() {
+    private void dispatchTakePictureIntent()
+    {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Assurez-vous que l'appareil dispose d'une application caméra pour gérer l'intention
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
