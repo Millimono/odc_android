@@ -1,9 +1,11 @@
 package com.example.odc1;
 
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.SearchView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +31,20 @@ public class Fragment1 extends Fragment {
 
         PersonneAdapter adapter = new PersonneAdapter(personnes);
         recyclerView.setAdapter(adapter);
+
+        SearchView searchView = view.findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
         return view;
     }
