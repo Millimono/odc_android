@@ -6,23 +6,52 @@
 
     <ImageView
         android:id="@+id/im"
-        android:layout_width="180dp"
-        android:layout_height="180dp" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:paddingEnd="8dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/prenomTextViewl"
+        android:layout_below="@+id/prenomTextViewl">
+        <TextView
+            android:id="@+id/nom"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:text="nom"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/nomTextView"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_alignEnd="@+id/prenomTextView"
-        android:layout_below="@+id/prenomTextView"
+        <TextView
+            android:id="@+id/nomTextView"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:textSize="18sp" />
 
-        android:textSize="18sp" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/prenomTextView"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
+    <LinearLayout
+        android:id="@+id/prenomTextViewl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/im"
-        android:textSize="16sp" />
+        >
+        <TextView
+            android:id="@+id/prenom"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:text="prenom"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/prenomTextView"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_toEndOf="@+id/im"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+
     <!-- Ajoutez plus de TextViews ici pour les autres attributs si nécessaire -->
 </RelativeLayout>

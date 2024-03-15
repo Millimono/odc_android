@@ -5,6 +5,7 @@ import static android.app.Activity.RESULT_OK;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -26,7 +27,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -36,8 +39,10 @@ public class Fragment2 extends Fragment {
     static final int REQUEST_CAMERA_PERMISSION = 2;
     private String currentPhotoPath; // Chemin de la photo actuelle
     private EditText nomEditText, prenomEditText, dateNaissanceEditText, salaireEditText, serviceEditText;
-    private Button saveButton,TakeButton;
+    private Button saveButton,TakeButton, pickImageButton;
     ImageView im;
+    static final int REQUEST_IMAGE_PICK = 3;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,6 +54,7 @@ public class Fragment2 extends Fragment {
         salaireEditText = view.findViewById(R.id.salaire);
         serviceEditText = view.findViewById(R.id.service);
         saveButton = view.findViewById(R.id.saveButton);
+        pickImageButton = view.findViewById(R.id.pickImageButton);
 
         TakeButton = view.findViewById(R.id.TakeButton);
         im  = view.findViewById(R.id.im);
@@ -66,6 +72,14 @@ public class Fragment2 extends Fragment {
                 saveData();
             }
         });
+
+        pickImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dispatchPickPictureIntent();saveData();
+            }
+        });
+
 
         return view;
     }
@@ -85,6 +99,12 @@ public class Fragment2 extends Fragment {
         }
 
         String service = serviceEditText.getText().toString();
+
+        // Vérifiez si une image a été prise ou sélectionnée
+        if (currentPhotoPath == null || currentPhotoPath.isEmpty()) {
+            Toast.makeText(getContext(), "Aucune image sélectionnée", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         DBHelper dbHelper = new DBHelper(getContext());
         dbHelper.addPersonne(nom, prenom, dateNaissance, salaire, service,currentPhotoPath);
@@ -151,15 +171,51 @@ public class Fragment2 extends Fragment {
         return image;
     }
 
-    @Override
+    //Gérer le résultat de l'intention : Modifiez la méthode onActivityResult pour gérer le résultat
+    // //de la sélection d'image, en plus de la prise de photo.
+    /**  @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK)
         {
             Glide.with(this).load(currentPhotoPath).into(im);
         }
+    }**/
+   /* @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+            Glide.with(this).load(currentPhotoPath).into(im);
+        } else if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK) {
+            Uri selectedImageUri = data.getData();
+            if (selectedImageUri != null) {
+                currentPhotoPath = getPathFromUri(selectedImageUri); // Convertir l'URI en chemin de fichier
+                Glide.with(this).load(selectedImageUri).into(im);
+            }
+        }
     }
 
+**/
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+            Glide.with(this).load(currentPhotoPath).into(im);
+        } else if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK) {
+            Uri selectedImageUri = data.getData();
+            if (selectedImageUri != null) {
+                try {
+                    currentPhotoPath = createImageFileFromUri(selectedImageUri); // Copiez l'image et obtenez le nouveau chemin
+                    if (currentPhotoPath != null) {
+                        Glide.with(this).load(currentPhotoPath).into(im);
+                    }
+                } catch (IOException e) {
+                    Toast.makeText(getContext(), "Erreur lors de la sauvegarde de l'image", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -174,6 +230,50 @@ public class Fragment2 extends Fragment {
             }
         }
     }
+
+    //Créer une méthode pour ouvrir la galerie
+    private void dispatchPickPictureIntent() {
+        Intent pickPictureIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        if (pickPictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivityForResult(pickPictureIntent, REQUEST_IMAGE_PICK);
+        }
+    }
+
+    //Convertir l'URI en chemin de fichier : Créez une méthode pour convertir l'URI
+    // de l'image sélectionnée en chemin de fichier, si nécessaire.
+
+    private String getPathFromUri(Uri contentUri) {
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getActivity().getContentResolver().query(contentUri, proj, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            return cursor.getString(column_index);
+        }
+        return null;
+    }
+
+    private String createImageFileFromUri(Uri imageUri) throws IOException {
+        InputStream inputStream = getActivity().getContentResolver().openInputStream(imageUri);
+        if (inputStream != null) {
+            File photoFile = createImageFile(); // Utilise la méthode existante pour créer un fichier vide
+
+            try (FileOutputStream outputStream = new FileOutputStream(photoFile)) {
+                // Copiez le contenu de l'URI vers le fichier
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = inputStream.read(buf)) > 0) {
+                    outputStream.write(buf, 0, len);
+                }
+                return photoFile.getAbsolutePath();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                inputStream.close();
+            }
+        }
+        return null;
+    }
+
 
 
 }

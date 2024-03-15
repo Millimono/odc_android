@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
-public class Fragment1 extends Fragment {
+public class Fragment1 extends Fragment implements PersonneAdapter.OnItemClickListener{
 
     public Fragment1() {
         // Required empty public constructor
@@ -27,10 +28,17 @@ public class Fragment1 extends Fragment {
         DBHelper dbHelper = new DBHelper(getContext());
         List<Personne> personnes = dbHelper.getAllPersonness();
 
-        PersonneAdapter adapter = new PersonneAdapter(personnes);
+        PersonneAdapter adapter = new PersonneAdapter(personnes,this);
         recyclerView.setAdapter(adapter);
 
         return view;
+    }
+
+    // Implémentation de onItemClick
+    @Override
+    public void onItemClick(Personne personne) {
+        Toast.makeText(getContext(), "Cliqué sur: " + personne.getNom(), Toast.LENGTH_SHORT).show();
+        // Ici, vous pouvez lancer une nouvelle activité, afficher un dialogue, etc.
     }
 }
 
