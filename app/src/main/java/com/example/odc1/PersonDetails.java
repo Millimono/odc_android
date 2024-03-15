@@ -17,7 +17,8 @@ public class PersonDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_details);
 
-        if (getIntent() != null) {
+        if (getIntent() != null)
+        {
             String nom = getIntent().getStringExtra("nom");
             String prenom = getIntent().getStringExtra("prenom");
             String imagePath = getIntent().getStringExtra("imagePath");

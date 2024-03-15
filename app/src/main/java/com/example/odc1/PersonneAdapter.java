@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -15,16 +16,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonneAdapter extends RecyclerView.Adapter<PersonneAdapter.PersonneViewHolder> {
     private List<Personne> personnes;
     private OnItemClickListener listener;
+    private List<Personne> personnesFull; // Copie complète des données
 
     // Interface pour les clics sur les items
     public interface OnItemClickListener {
         void onItemClick(Personne personne);
-
 
     }
 
@@ -32,10 +34,50 @@ public class PersonneAdapter extends RecyclerView.Adapter<PersonneAdapter.Person
     public PersonneAdapter(List<Personne> personnes, OnItemClickListener listener) {
         this.personnes = personnes;
         this.listener = listener;
+        this.personnesFull = new ArrayList<>(personnes);
     }
 
-    public PersonneAdapter(List<Personne> personnes) {
+    public Filter getFilter() {
+        return filter;
+    }
+
+    private Filter filter = new Filter()
+    {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Personne> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(personnesFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Personne item : personnesFull) {
+                    if (item.getNom().toLowerCase().contains(filterPattern))
+                    {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            personnes.clear();
+            personnes.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
+
+
+    public PersonneAdapter(List<Personne> personnes)
+    {
         this.personnes = personnes;
+        this.personnesFull = new ArrayList<>(personnes);
     }
 
     @NonNull

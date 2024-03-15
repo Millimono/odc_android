@@ -2,6 +2,8 @@ package com.example.odc1;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +33,32 @@ public class Fragment1 extends Fragment implements PersonneAdapter.OnItemClickLi
 
         PersonneAdapter adapter = new PersonneAdapter(personnes,this);
         recyclerView.setAdapter(adapter);
+
+        SearchView searchView = view.findViewById(R.id.searchView);
+
+       /** final LayoutInflater factory = getLayoutInflater();
+
+        final View textEntryView = factory.inflate(R.layout.pageprincipale, null);
+
+        SearchView searchView = (SearchView) textEntryView.findViewById(R.id.searchView);**/
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
+
+            @Override
+            public boolean onQueryTextSubmit(String query)
+            {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText)
+            {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
 
         return view;
     }
