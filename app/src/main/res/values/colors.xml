@@ -9,4 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="col1">#FF332567</color>
 
+    <color name="button_selected">#FFC107</color> <!-- Couleur jaune pour exemple -->
+    <color name="button_not_selected">#FFFFFF</color> <!-- Couleur blanche -->
+
+    <color name="icon_selected">#FF3700B3</color>
+    <color name="icon_not_selected">#FF000000</color>
+
+
 </resources>

@@ -5,17 +5,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <LinearLayout
+        android:id="@+id/specialLayoutForBtn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:padding="10dp"
         >
 
-        <ImageView
+        <!--ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_home_24"
             android:layout_weight="1"
-            />
+            /-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,7 +32,14 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_home_24"
+            android:src="@drawable/baseline_add_circle_outline_24"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_search_24"
             android:layout_weight="1"
             />
 
@@ -38,22 +47,74 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="9">
+        android:layout_height="match_parent"
+        android:layout_weight="9"
+        android:padding="10dp"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btntest"
+            <!-- Button
+                android:id="@+id/btntestss"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="btn1"
                 android:layout_weight="1"
+                /-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                        <ImageButton
+                            android:id="@+id/btntest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_home_24"
+                            android:layout_weight="1"
+                            android:background="?attr/selectableItemBackground"
+                            android:contentDescription="@string/description1"
+                        />
+                        <View
+                            android:id="@+id/indicator_btntest"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/icon_selected"
+                            android:visibility="invisible"/>
+
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                        <ImageButton
+                            android:id="@+id/btntest2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_people_alt_24"
+                            android:layout_weight="1"
+                            android:background="?attr/selectableItemBackground"
+                            android:contentDescription="@string/description1"
+                            />
+                        <View
+                            android:id="@+id/indicator_btntest2"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/icon_selected"
+                            android:visibility="invisible"/>
+
+        </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
@@ -61,43 +122,61 @@
                 android:layout_weight="1"
                 />
 
-            <Button
-                android:id="@+id/btntest2"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="btn2"
-                android:layout_weight="1"
-                />
+                android:orientation="vertical"
+                android:layout_weight="1">
+                    <ImageButton
+                        android:id="@+id/btntest3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/baseline_sports_soccer_24"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:contentDescription="@string/description1"
+                        />
+                <View
+                    android:id="@+id/indicator_btntest3"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/icon_selected"
+                    android:visibility="invisible"/>
+
+            </LinearLayout>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 />
-            <Button
-                android:id="@+id/btntest3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="btn3"
-                android:layout_weight="1"
-                />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
-            <Button
-                android:id="@+id/btntest4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="btn4"
-                android:layout_weight="1"
-                />
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+                        <ImageButton
+                            android:id="@+id/btntest4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_picture_in_picture_24"
+                            android:layout_weight="1"
+                            android:background="?attr/selectableItemBackground"
+                            android:contentDescription="@string/description1"
+                            />
+                <View
+                    android:id="@+id/indicator_btntest4"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/icon_selected"
+                    android:visibility="invisible"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="9">
 

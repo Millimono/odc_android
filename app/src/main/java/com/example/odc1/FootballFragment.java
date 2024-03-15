@@ -1,5 +1,6 @@
 package com.example.odc1;
 
+import android.content.Context;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.List;
@@ -75,7 +77,8 @@ public class FootballFragment extends Fragment {
 
             @Override
             public void onFailure(Call<CompetitionsResponse> call, Throwable t) {
-                textView.setText("Échec de la connexion: " + t.getMessage());
+                //textView.setText("Échec de la connexion: " + t.getMessage());
+                //Toast.makeText(Context(), "Échec de la connexion: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
