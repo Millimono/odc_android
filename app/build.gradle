@@ -52,6 +52,7 @@ dependencies {
 
     // Pour les transformations de l'image, comme l'arrondissement
     implementation 'jp.wasabeef:glide-transformations:4.3.0'
+    implementation "androidx.cardview:cardview:1.0.0"
 
 }
 

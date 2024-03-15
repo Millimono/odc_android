@@ -1,5 +1,6 @@
 package com.example.odc1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,8 +38,13 @@ public class Fragment1 extends Fragment implements PersonneAdapter.OnItemClickLi
     // Implémentation de onItemClick
     @Override
     public void onItemClick(Personne personne) {
-        Toast.makeText(getContext(), "Cliqué sur: " + personne.getNom(), Toast.LENGTH_SHORT).show();
-        // Ici, vous pouvez lancer une nouvelle activité, afficher un dialogue, etc.
+        Intent intent = new Intent(getContext(), PersonDetails.class);
+        intent.putExtra("nom", personne.getNom());
+        intent.putExtra("prenom", personne.getPrenom());
+        intent.putExtra("imagePath", personne.getImagePath());
+
+        // Ajoutez d'autres informations comme extras selon les besoins
+        startActivity(intent);
     }
 }
 

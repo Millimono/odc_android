@@ -29,6 +29,7 @@
 
         <activity android:name=".pageprincipale"></activity>
         <activity android:name=".enregistrementuser"></activity>
+        <activity android:name=".PersonDetails"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -1,8 +1,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="8dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/edit_text_background"
+        android:padding="16dp">
 
     <ImageView
         android:id="@+id/im"
@@ -13,20 +26,20 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/prenomTextViewl"
-        android:layout_below="@+id/prenomTextViewl">
+        android:orientation="vertical">
         <TextView
             android:id="@+id/nom"
             android:layout_width="80dp"
             android:layout_height="30dp"
             android:text="nom"
             android:textSize="18sp" />
-
         <TextView
-            android:id="@+id/nomTextView"
+            android:id="@+id/prenom"
             android:layout_width="80dp"
             android:layout_height="30dp"
+            android:text="prenom"
             android:textSize="18sp" />
+
 
     </LinearLayout>
 
@@ -34,24 +47,22 @@
         android:id="@+id/prenomTextViewl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/im"
-        >
+        android:orientation="vertical"  >
         <TextView
-            android:id="@+id/prenom"
+            android:id="@+id/nomTextView"
             android:layout_width="80dp"
             android:layout_height="30dp"
-            android:text="prenom"
             android:textSize="18sp" />
         <TextView
             android:id="@+id/prenomTextView"
             android:layout_width="80dp"
             android:layout_height="30dp"
-            android:layout_toEndOf="@+id/im"
             android:textSize="16sp" />
 
     </LinearLayout>
 
-
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <!-- Ajoutez plus de TextViews ici pour les autres attributs si nécessaire -->
 </RelativeLayout>

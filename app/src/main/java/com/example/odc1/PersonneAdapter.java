@@ -1,6 +1,7 @@
 package com.example.odc1;
 
 
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,8 @@ public class PersonneAdapter extends RecyclerView.Adapter<PersonneAdapter.Person
     // Interface pour les clics sur les items
     public interface OnItemClickListener {
         void onItemClick(Personne personne);
+
+
     }
 
     // Constructeur avec un listener
